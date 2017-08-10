@@ -1,0 +1,28 @@
+diff -Naur byobu-5.112/usr/bin/byobu-shell.in byobu-5.112-l/usr/bin/byobu-shell.in
+--- byobu-5.112/usr/bin/byobu-shell.in	2016-04-07 23:05:52.000000000 +0100
++++ byobu-5.112-l/usr/bin/byobu-shell.in	2016-12-09 13:47:36.226588606 +0100
+@@ -41,6 +41,6 @@
+ 	touch "$FLAG"
+ fi
+ 
+-[ -n "$SHELL" -a -x "$SHELL" ] && exec "$SHELL" || exec /bin/sh
++[ -n "$SHELL" -a -x "$SHELL" ] && exec "$SHELL" -l || exec /bin/sh
+ 
+ # vi: syntax=sh ts=4 noexpandtab
+diff -Naur byobu-5.112/usr/lib/byobu/include/select-session.py byobu-5.112-l/usr/lib/byobu/include/select-session.py
+--- byobu-5.112/usr/lib/byobu/include/select-session.py	2016-07-29 17:39:44.000000000 +0100
++++ byobu-5.112-l/usr/lib/byobu/include/select-session.py	2016-12-09 13:46:32.299592602 +0100
+@@ -188,11 +188,11 @@
+ 	if sessions[choice - 1] == "NEW":
+ 		# Create a new session
+ 		if BYOBU_BACKEND == "tmux":
+-			os.execvp("byobu", ["byobu", "new-session", SHELL])
++			os.execvp("byobu", ["byobu", "new-session", SHELL, "-l"])
+ 		else:
+ 			os.execvp("byobu", ["byobu", SHELL])
+ 	elif sessions[choice - 1] == "SHELL":
+-		os.execvp(SHELL, [SHELL])
++		os.execvp(SHELL, [SHELL, "-l"])
+ 	else:
+ 		# Attach to the chosen session; must use the binary, not the wrapper!
+ 		attach_session(sessions[choice - 1])

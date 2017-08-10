@@ -1,0 +1,12 @@
+diff -Naur geany-1.31.org/src/msgwindow.c geany-1.31/src/msgwindow.c
+--- geany-1.31.org/src/msgwindow.c	2017-07-11 01:20:07.000000000 +0100
++++ geany-1.31/src/msgwindow.c	2017-08-10 01:02:19.030508904 +0100
+@@ -268,7 +268,7 @@
+ static const GdkColor *get_color(gint msg_color)
+ {
+ 	static const GdkColor dark_red = {0, 65535 / 2, 0, 0};
+-	static const GdkColor blue = {0, 0, 0, 0xD000};	/* not too bright ;-) */
++	static const GdkColor blue = {0, 0xD000, 0, 0xD000};	/* not too blue - but purple  ;-) */
+ 
+ 	switch (msg_color)
+ 	{
